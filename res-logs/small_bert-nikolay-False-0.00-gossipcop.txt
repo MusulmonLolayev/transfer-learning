@@ -1,0 +1,5 @@
+Training dataset: 
+Test dataset: 
+Output shape: 512
+============================== Heuristic weights calculation ==============================
+============================== Evaluation results on all heuristic weights ==============================
