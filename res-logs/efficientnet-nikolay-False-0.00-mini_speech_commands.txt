@@ -1,7 +1,0 @@
-Training dataset: 
-Test dataset: 
-Output shape: 1001
-============================== Heuristic weights calculation ==============================
-============================== Evaluation results on all heuristic weights ==============================
-Training loss: 161.9288, accuracy: 0.1606
-Test loss: 171.4908, accuracy: 0.1556
