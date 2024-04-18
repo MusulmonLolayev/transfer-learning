@@ -7,6 +7,7 @@ def entropy(counts):
   """
   probs = counts / np.sum(counts)
   log = np.log(probs)
+  log[np.isinf(log)] = 0
   return -np.sum(probs * log)
 
 def gini(counts):

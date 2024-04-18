@@ -1,0 +1,168 @@
+Training dataset: 
+Test dataset: 
+Now: 2024-04-05 10:12:31.474113
+Dataset: /home/Musolmon/Documents/AI/datasets/audio-classification/voices
+None
+============================== Running all image classification problems ==============================
+
+ ****************************** Model name: vision_transformer ******************************
+
+Model version: vit-b16-classification
+
+ Number of examples in computing weights heuristically: 64
+Output shape: 1000
+============================== Heuristic weights calculation ==============================
+============================== Evaluation results on all heuristic weights ==============================
+Training loss: 24.9002, accuracy: 0.1648
+Test loss: 24.8753, accuracy: 0.1746
+============================== Training model on all heurstic weights with epochs 5 ==============================
+Training loss: 1.4587, accuracy: 0.4361
+Test loss: 1.4838, accuracy: 0.4308
+============================== Training model on all initial weights with epochs 5 ==============================
+Training loss: 1.4502, accuracy: 0.4465
+Test loss: 1.4915, accuracy: 0.4320
+
+ Number of examples in computing weights heuristically: 128
+Output shape: 1000
+============================== Heuristic weights calculation ==============================
+============================== Evaluation results on all heuristic weights ==============================
+Training loss: 15.4815, accuracy: 0.1712
+Test loss: 15.2273, accuracy: 0.1829
+============================== Training model on all heurstic weights with epochs 5 ==============================
+Training loss: 1.4384, accuracy: 0.4489
+Test loss: 1.5583, accuracy: 0.4462
+============================== Training model on all initial weights with epochs 5 ==============================
+Training loss: 1.4127, accuracy: 0.4567
+Test loss: 1.5165, accuracy: 0.4313
+
+ Number of examples in computing weights heuristically: 256
+Output shape: 1000
+============================== Heuristic weights calculation ==============================
+============================== Evaluation results on all heuristic weights ==============================
+Training loss: 10.3958, accuracy: 0.1655
+Test loss: 10.3194, accuracy: 0.1772
+============================== Training model on all heurstic weights with epochs 5 ==============================
+Training loss: 1.4273, accuracy: 0.4524
+Test loss: 1.4074, accuracy: 0.4553
+============================== Training model on all initial weights with epochs 5 ==============================
+Training loss: 1.4018, accuracy: 0.4583
+Test loss: 1.4606, accuracy: 0.4315
+
+ Number of examples in computing weights heuristically: 512
+Output shape: 1000
+============================== Heuristic weights calculation ==============================
+============================== Evaluation results on all heuristic weights ==============================
+Training loss: 5.9878, accuracy: 0.1859
+Test loss: 5.8733, accuracy: 0.1960
+============================== Training model on all heurstic weights with epochs 5 ==============================
+Training loss: 1.4305, accuracy: 0.4485
+Test loss: 1.5760, accuracy: 0.4196
+============================== Training model on all initial weights with epochs 5 ==============================
+Training loss: 1.4287, accuracy: 0.4563
+Test loss: 1.4837, accuracy: 0.4410
+
+ Number of examples in computing weights heuristically: 1024
+Output shape: 1000
+============================== Heuristic weights calculation ==============================
+============================== Evaluation results on all heuristic weights ==============================
+Training loss: 8.4483, accuracy: 0.1723
+Test loss: 8.3540, accuracy: 0.1827
+============================== Training model on all heurstic weights with epochs 5 ==============================
+Training loss: 1.4759, accuracy: 0.4330
+Test loss: 1.6889, accuracy: 0.3949
+============================== Training model on all initial weights with epochs 5 ==============================
+Training loss: 1.4277, accuracy: 0.4533
+Test loss: 1.4753, accuracy: 0.4206
+
+ Number of examples in computing weights heuristically: 2048
+Output shape: 1000
+============================== Heuristic weights calculation ==============================
+============================== Evaluation results on all heuristic weights ==============================
+Training loss: 5.5912, accuracy: 0.1685
+Test loss: 5.5452, accuracy: 0.1739
+============================== Training model on all heurstic weights with epochs 5 ==============================
+Training loss: 1.4247, accuracy: 0.4474
+Test loss: 1.4189, accuracy: 0.4363
+============================== Training model on all initial weights with epochs 5 ==============================
+Training loss: 1.4189, accuracy: 0.4555
+Test loss: 1.4436, accuracy: 0.4472
+
+Model version: vit-b16-fe
+
+ Number of examples in computing weights heuristically: 64
+Output shape: 768
+============================== Heuristic weights calculation ==============================
+============================== Evaluation results on all heuristic weights ==============================
+Training loss: 9.4217, accuracy: 0.2939
+Test loss: 9.7539, accuracy: 0.2807
+============================== Training model on all heurstic weights with epochs 5 ==============================
+Training loss: 1.2766, accuracy: 0.4997
+Test loss: 1.3380, accuracy: 0.4698
+============================== Training model on all initial weights with epochs 5 ==============================
+Training loss: 1.2499, accuracy: 0.5141
+Test loss: 1.4607, accuracy: 0.4665
+
+ Number of examples in computing weights heuristically: 128
+Output shape: 768
+============================== Heuristic weights calculation ==============================
+============================== Evaluation results on all heuristic weights ==============================
+Training loss: 7.7540, accuracy: 0.2319
+Test loss: 7.7064, accuracy: 0.2345
+============================== Training model on all heurstic weights with epochs 5 ==============================
+Training loss: 1.2700, accuracy: 0.5029
+Test loss: 1.4236, accuracy: 0.4555
+============================== Training model on all initial weights with epochs 5 ==============================
+Training loss: 1.2502, accuracy: 0.5049
+Test loss: 1.3404, accuracy: 0.4676
+
+ Number of examples in computing weights heuristically: 256
+Output shape: 768
+============================== Heuristic weights calculation ==============================
+============================== Evaluation results on all heuristic weights ==============================
+Training loss: 5.5810, accuracy: 0.2862
+Test loss: 5.6388, accuracy: 0.2883
+============================== Training model on all heurstic weights with epochs 5 ==============================
+Training loss: 1.2645, accuracy: 0.5024
+Test loss: 1.3396, accuracy: 0.4779
+============================== Training model on all initial weights with epochs 5 ==============================
+Training loss: 1.2467, accuracy: 0.5117
+Test loss: 1.3277, accuracy: 0.4717
+
+ Number of examples in computing weights heuristically: 512
+Output shape: 768
+============================== Heuristic weights calculation ==============================
+============================== Evaluation results on all heuristic weights ==============================
+Training loss: 4.4322, accuracy: 0.2329
+Test loss: 4.4616, accuracy: 0.2376
+============================== Training model on all heurstic weights with epochs 5 ==============================
+Training loss: 1.2726, accuracy: 0.4983
+Test loss: 1.3338, accuracy: 0.4653
+============================== Training model on all initial weights with epochs 5 ==============================
+Training loss: 1.2477, accuracy: 0.5049
+Test loss: 1.4045, accuracy: 0.4641
+
+ Number of examples in computing weights heuristically: 1024
+Output shape: 768
+============================== Heuristic weights calculation ==============================
+============================== Evaluation results on all heuristic weights ==============================
+Training loss: 4.2010, accuracy: 0.2598
+Test loss: 4.2058, accuracy: 0.2647
+============================== Training model on all heurstic weights with epochs 5 ==============================
+Training loss: 1.2926, accuracy: 0.4905
+Test loss: 1.4390, accuracy: 0.4308
+============================== Training model on all initial weights with epochs 5 ==============================
+Training loss: 1.2690, accuracy: 0.5031
+Test loss: 1.3576, accuracy: 0.4676
+
+ Number of examples in computing weights heuristically: 2048
+Output shape: 768
+============================== Heuristic weights calculation ==============================
+============================== Evaluation results on all heuristic weights ==============================
+Training loss: 3.3165, accuracy: 0.2621
+Test loss: 3.3262, accuracy: 0.2659
+============================== Training model on all heurstic weights with epochs 5 ==============================
+Training loss: 1.2902, accuracy: 0.4971
+Test loss: 1.3295, accuracy: 0.4707
+============================== Training model on all initial weights with epochs 5 ==============================
+Training loss: 1.2582, accuracy: 0.5077
+Test loss: 1.3750, accuracy: 0.4569

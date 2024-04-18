@@ -13,7 +13,7 @@ from tensorflow.keras import layers
 from tensorflow.keras.models import Sequential
 import tensorflow_hub as hub
 
-from utils import crit_dividing, class_direction, img_model_links
+from utils import crit_dividing, class_direction, img_model_links, all_heuristic_weight
 
 gpus = tf.config.list_physical_devices('GPU')
 
@@ -30,11 +30,7 @@ def experiment(
     epochs=5,
     num_train=64,
     num_classes=10,
-    f=None,
-    wtype='nikolay',
-    only_sign=False,
-    wthreshold=0.0,
-    optimizer='Adam'):
+    f=None):
   
   input_shape = (224, 224, 3) 
 
@@ -77,22 +73,9 @@ def experiment(
   print('='*30, 'Heuristic weights calculation', '='*30, file=f)
   # calculate weights
   # get number of classes
-  w = np.zeros((X.shape[1], num_classes))
-
-  for i in range(X.shape[1]):
-    x = X[:, i]
-    sort_indices = np.argsort(x)
-    for j in range(num_classes):
-      y = (labels != j).astype(int)
-
-      _, num_labels = np.unique(y, return_counts=True)
-      res = crit_dividing(x, y, sort_indices, num_labels, wtype)
-      sign = class_direction(x, y, x[int(res[2])], num_labels)
-      if only_sign:
-        w[i, j] = 0.2 * sign
-      else:
-        w[i, j] = 0 if wthreshold > res[0] else res[0] * sign
-
+  w = all_heuristic_weight(X, labels)
+  return
+  
   # remove the old references
   del model
   tf.keras.backend.clear_session()
@@ -113,7 +96,8 @@ def experiment(
 
   # assign heuristic weights
   model.trainable_variables[-2].assign(-w)
-  model.compile(optimizer=optimizer,
+  model.compile(optimizer=keras.optimizers.legacy.Adam(
+    learning_rate=1e-1, decay=1e-1),
     loss=keras.losses.SparseCategoricalCrossentropy(from_logits=True),
     metrics=['accuracy'])
   print('='*30, 'Evaluation results on all heuristic weights', '='*30)
@@ -152,7 +136,8 @@ def experiment(
     tf.keras.backend.clear_session()
     time.sleep(3)
     gc.collect()
-    model.compile(optimizer=optimizer,
+    model.compile(optimizer=keras.optimizers.legacy.Adam(
+      learning_rate=1e-2, decay=1e-2),
       loss=keras.losses.SparseCategoricalCrossentropy(from_logits=True),
       metrics=['accuracy'])
     print('='*30, f'Training model on all initial weights with epochs {epochs}', '='*30)
@@ -185,33 +170,19 @@ def main():
   parser.add_argument('--seed', type=int, default=42)
   parser.add_argument('--epochs', type=int, default=5)
   parser.add_argument('--model', type=str, choices=list(img_model_links.keys()))
-  parser.add_argument('--only-sign', type=bool, default=False)
-  parser.add_argument('--w-threshold', type=float, default=0)
-  parser.add_argument('--w-type', type=str, choices=['nikolay', 'entropy', 'gini'])
-  parser.add_argument('--optimizer', type=str, 
-                      choices=['Adam', 'SGD', 'Adadelta', 'Adagrad', 
-                               'Adamax', 'Ftrl', 'Nadam', 'RMSprop'],
-                      default="Adam")
   parser.add_argument('--output', type=str, default='output.txt')
 
   args = parser.parse_args()
 
   tr_folder = args.tr_folder
   te_folder = args.te_folder
-  only_sign = args.only_sign
-  wthreshold = args.w_threshold
   seed = args.seed
   model_name = args.model
-  wtype = args.w_type
-  optimizer = args.optimizer
-  out_name: str = args.output
-  if not out_name.endswith('.txt'):
-    out_name += '.txt'
 
   if seed:
     tf.random.set_seed(seed=seed)
-  log_f_path = f'res-logs/{model_name}-{optimizer}-{wtype}-{only_sign}-{wthreshold:.2f}-{out_name}'
-  with open(log_f_path, 'w') as f:
+
+  with open(model_name + '-' + args.output, 'a+') as f:
 
     if te_folder:
       # load datasets
@@ -248,19 +219,15 @@ def main():
           subset='validation')
     num_classes = len(train_ds.class_names)
     # to test code
-    # experiment(
-    #   train_ds=train_ds,
-    #   test_ds=test_ds,
-    #   model_link="https://kaggle.com/models/google/mobilenet-v3/frameworks/TensorFlow2/variations/large-075-224-classification/versions/1",
-    #   num_train=128,
-    #   num_classes=num_classes,
-    #   epochs=args.epochs,
-    #   f=f,
-    #   wthreshold=wthreshold,
-    #   wtype=wtype,
-    #   only_sign=only_sign,
-    #   optimizer=optimizer)
-    # return
+    experiment(
+      train_ds=train_ds,
+      test_ds=test_ds,
+      model_link="https://kaggle.com/models/google/mobilenet-v3/frameworks/TensorFlow2/variations/large-075-224-classification/versions/1",
+      num_train=128,
+      num_classes=num_classes,
+      epochs=args.epochs,
+      f=f)
+    return
 
     f.write(f'Now: {datetime.datetime.now()}\n')
     f.write(f'Dataset: {tr_folder}\n{te_folder}\n')
@@ -284,11 +251,7 @@ def main():
             num_train=num_train,
             num_classes=num_classes,
             epochs=args.epochs,
-            f=f,
-            wthreshold=wthreshold,
-            wtype=wtype,
-            only_sign=only_sign,
-            optimizer=optimizer)
+            f=f)
         except:
           print("A error occured")
           print("A error occured", file=f)
